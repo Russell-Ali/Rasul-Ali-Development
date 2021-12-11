@@ -1,48 +1,58 @@
-import Head from "next/head";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
 import styles from "../styles/Home.module.css";
+import gsap from "gsap";
 import Typing from "react-typing-animation";
 export default function Home() {
-  const [loadState, setLoadState] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoadState(true);
+  const textBox = useRef();
+  const mainContent = useRef();
+  const greeterFirst = () => {
+    console.log("greeter first");
+    gsap.to(textBox.current, {
+      duration: "1",
+      delay: "1.5",
+      y: "-=150px",
+      ease: "sine.out",
     });
-  });
+    gsap.to(mainContent.current, {
+      duration: "1",
+      delay: "1.5",
+      y: "-=150px",
+      ease: "sine.out",
+    });
+  };
+
   return (
     <dev className={styles.mainWrapper}>
       <div
-        className={`${styles.textBox_1} ${
-          loadState ? styles.textBox_1_anim : null
-        }`}
+        ref={textBox}
+        className={`${styles.textBox_1} ${0 ? styles.textBox_1_anim : null}`}
       >
         <Typing
           className={styles.text_1_1}
           speed={150}
           startDelay={200}
           cursor={<div className={styles.cursorVisual}></div>}
+          onFinishedTyping={() => {
+            console.log("just finished");
+            greeterFirst();
+          }}
         >
-          <span>hi,</span>
-          <Typing.Delay ms={300} />
-          Welcome to my wbpa
+          Hi, welcome to my wbpa
           <Typing.Speed ms={100} />
           <Typing.Backspace count={3} />
           ebpage
-          <Typing.Reset count={26} delay={1500} />
-          <Typing.Delay ms={2000} />
-          <Typing.Speed ms={150} />
-          my name is R
+          <Typing.Backspace count={40} speed={10} delay={1900} />
+          <Typing.Delay ms={500} />
           <Typing.Speed ms={100} />
-          asul btw
+          <span> my name is Rasul btw</span>
         </Typing>
       </div>
       <div
         className={`${styles.mainContent} ${
-          loadState ? styles.mainContent_anim : null
+          0 ? styles.mainContent_anim : null
         }`}
       >
-        <p className={styles.content_1}>
+        <p ref={mainContent} className={styles.content_1}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
           officiis blanditiis odio deleniti hic delectus quae illum est eius aut
           sapiente obcaecati repellendus modi magnam, optio eos nisi debitis
