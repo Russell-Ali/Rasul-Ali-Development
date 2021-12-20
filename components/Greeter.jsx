@@ -9,38 +9,36 @@ const Greeter = ({ completeHandler }) => {
       completeHandler();
     };
     gsap.to(textBox.current, {
-      duration: "2",
-      delay: "1.5",
+      duration: "1",
+      delay: "1",
       top: "-=17em",
-      ease: "Power4.in",
+      ease: "Power2.in",
       onComplete: completeHelper,
     });
   };
   return (
     <div
       ref={textBox}
-      className={`${styles.textBox_1} ${0 ? styles.textBox_1_anim : null}`}
+      className={styles.textBox_1}
     >
       <p id={styles.prompt} className={styles.text_1_1}>
         $ echo
       </p>
       <Typing
         className={styles.text_1_1}
-        speed={150}
-        startDelay={200}
+        speed={100}
+        startDelay={100}
         cursor={<div className={styles.cursorVisual}></div>}
         onFinishedTyping={() => {
           greeterAnimation();
         }}
       >
-        Hi, welcome to my wbpa
-        <Typing.Speed ms={100} />
+        "Hi, welcome to my wbpa
+        <Typing.Speed ms={80} />
         <Typing.Backspace count={3} />
-        ebpage
-        <Typing.Backspace count={40} speed={10} delay={1900} />
-        <Typing.Delay ms={500} />
-        <Typing.Speed ms={100} />
-        <span> my name is Rasul btw</span>
+        ebpage.
+        <Typing.Delay ms={200} />
+        <span> My name is Rasul"</span>
       </Typing>
     </div>
   );

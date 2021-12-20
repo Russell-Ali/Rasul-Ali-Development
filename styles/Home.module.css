@@ -4,13 +4,13 @@
   width: 100%;
   min-height: 100vh;
   align-items: center;
-  background: var(--bg-dark-clr);
+  background: var(--bg-light-clr);
 }
 
 .text_1_1 {
   font-size: 2em;
   height: fit-content;
-  color: var(--fg-cold-clr);
+  color: var(--bg-dark-clr);
 }
 .mainContent {
   display: grid;
